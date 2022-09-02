@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="20sp"
+    android:paddingTop="20sp"
+    android:paddingEnd="20sp"
+    android:paddingBottom="20sp"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchSensitive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:minHeight="48dp"
+        android:text="Senstive" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextInput"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:ems="10"
+        android:gravity="start"
+        android:hint="Text"
+        android:inputType="textLongMessage|textNoSuggestions"
+        android:textAlignment="viewStart"
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0"
+        android:paddingStart="50sp"
+        android:paddingEnd="50sp"
+        android:text="Send"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
