@@ -246,7 +246,7 @@ int keyboard_fill_report(char report[8], char buf[BUF_LEN], int *hold)
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_example_hidsend_MyRootService_send_1message(JNIEnv *env, jobject thiz, jstring msg) {
+Java_com_example_hidsend_MyRootService_sendMessage(JNIEnv *env, jobject thiz, jstring msg) {
     const char *filename = "/dev/hidg0";
 
     char buf[BUF_LEN];
@@ -262,23 +262,16 @@ Java_com_example_hidsend_MyRootService_send_1message(JNIEnv *env, jobject thiz, 
 
     if ((fd = open(filename, O_RDWR, 0666)) == -1) {
         perror(filename);
-        filename = "/dev/hidg1";
-        if(((fd = open(filename, O_RDWR, 0666)) == -1)){
-            perror(filename);
-            return 2;
-        }
+        return 2;
     }
 
-     const char *message = reinterpret_cast<const char *>(msg);
-    std::stringbuf msgBuf = std::stringbuf(message);
+     const char *message = env->GetStringUTFChars(msg, 0);
 
+    strncpy(buf, message, strlen(message));
 
+    buf[strlen(message)] = '\0';
 
     memset(report, 0x0, sizeof(report));
-
-    msgBuf.sgetn(buf, BUF_LEN);
-
-    buf[strlen(message) - 1] = '/0';
 
     to_send = keyboard_fill_report(report, buf, &hold);
 

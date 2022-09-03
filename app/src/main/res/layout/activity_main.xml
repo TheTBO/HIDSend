@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,12 +11,20 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchRawCommands"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:minHeight="48dp"
+        android:text="@string/raw_commands" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/switchSensitive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:minHeight="48dp"
-        android:text="Senstive" />
+        android:text="@string/sensitive" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTextInput"
@@ -27,7 +34,7 @@
         android:layout_weight="1"
         android:ems="10"
         android:gravity="start"
-        android:hint="Text"
+        android:hint="@string/text"
         android:inputType="textLongMessage|textNoSuggestions"
         android:textAlignment="viewStart"
         android:textSize="20sp"
@@ -41,7 +48,7 @@
         android:layout_weight="0"
         android:paddingStart="50sp"
         android:paddingEnd="50sp"
-        android:text="Send"
+        android:text="@string/send"
         android:textSize="18sp"
         android:textStyle="bold" />
 

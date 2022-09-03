@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HID Send</string>
+    <string name="sensitive">Sensitive</string>
+    <string name="text">Text</string>
+    <string name="send">Send</string>
+    <string name="commands">Commands</string>
+    <string name="raw_commands">Raw Commands</string>
 </resources>
