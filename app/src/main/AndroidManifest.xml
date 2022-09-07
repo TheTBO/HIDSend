@@ -18,8 +18,8 @@
         <service
             android:name=".MyRootService"
             android:enabled="true"
-            android:exported="true"
-            tools:ignore="Instantiatable"></service>
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name=".MainActivity"
@@ -30,7 +30,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -
         </activity>
     </application>
 

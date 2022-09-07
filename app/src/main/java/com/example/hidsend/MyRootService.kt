@@ -28,25 +28,33 @@ class MyRootService : RootService(), Handler.Callback {
     override fun handleMessage(msg: Message): Boolean {
         return when (msg.what) {
             MSG_SEND_MESSAGE -> {
-                val replyMessage = Message.obtain(null, MSG_RECEIVED)
-                Bundle().also { bundle ->
-                    bundle.putString("msg", "Received: ${msg.data["msg"]}")
-                    for(char in msg.data["msg"].toString()){
-                        sendMessage(parseKey(char))
-                    }
-                    replyMessage.data = bundle
+
+                for (char in msg.data["msg"].toString()) {
+                    sendMessage(parseKey(char))
                 }
-                msg.replyTo.send(replyMessage)
+
+                if(msg.replyTo != null) {
+                    val replyMessage = Message.obtain(null, MSG_RECEIVED)
+                    Bundle().also { bundle ->
+                        bundle.putString("msg", "Received: ${msg.data["msg"]}")
+                        replyMessage.data = bundle
+                    }
+                    msg.replyTo.send(replyMessage)
+                }
                 true
             }
             MSG_SEND_RAW_COMMANDS -> {
                 for( line in msg.data["msg"].toString().lines()){
-                    val replyMessage = Message.obtain(null, MSG_RECEIVED)
-                    Bundle().also { bundle ->
-                        bundle.putString("msg", "Received: $line")
-                        replyMessage.data = bundle
+
+                    if(msg.replyTo != null) {
+                        val replyMessage = Message.obtain(null, MSG_RECEIVED)
+                        Bundle().also { bundle ->
+                            bundle.putString("msg", "Received: $line")
+                            replyMessage.data = bundle
+                        }
+                        msg.replyTo.send(replyMessage)
                     }
-                    msg.replyTo.send(replyMessage)
+
                     sendMessage(line)
                 }
                 true
