@@ -16,6 +16,7 @@ import android.widget.EditText
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.topjohnwu.superuser.ipc.RootService
 
 
 class InputFragment : Fragment() {
@@ -73,13 +74,16 @@ class InputFragment : Fragment() {
             val rootConnection = rootViewModel.getRootConnection.value
             val replyToMessenger = rootViewModel.getReplyMessenger.value
 
-            Log.d(TAG, rootConnection.toString())
             if (editTextInput.text.toString() != "") {
+
+                Log.d(TAG, editTextInput.text.toString())
+
                 if(rootConnection?.mBound == true) {
+
                     val msg = if (switchRawCommand.isChecked) {
-                        Message.obtain(null, MSG_SEND_RAW_COMMANDS)
+                        Message.obtain(null, MyRootService.MSG_SEND_RAW_COMMANDS)
                     } else {
-                        Message.obtain(null, MSG_SEND_MESSAGE)
+                        Message.obtain(null, MyRootService.MSG_SEND_MESSAGE)
                     }
                     Bundle().also { bundle ->
                         bundle.putString("msg", editTextInput.text.toString())
@@ -121,6 +125,10 @@ class InputFragment : Fragment() {
 
     private fun hideText(editText: EditText) {
         editText.transformationMethod = PasswordTransformationMethod.getInstance()
+    }
+
+    companion object {
+        const val TAG = "HID_SEND_INPUT_FRAG"
     }
 
 }

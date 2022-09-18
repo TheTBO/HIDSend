@@ -1,19 +1,22 @@
 package com.example.hidsend
 
 import android.os.Bundle
-import android.os.Message
 import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
-import java.lang.Exception
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 
 
 class KeyboardFragment : Fragment(){
 
-    private val rootViewModel: RootViewModel by activityViewModels()
+
+
+    val keyboardViewModel : KeyboardViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,27 +26,7 @@ class KeyboardFragment : Fragment(){
         }
     }
 
-    private val keyOnClickListener = View.OnClickListener {
-        val key: Key = it as Key
-        val rootConnection = rootViewModel.getRootConnection.value
-        val replyToMessenger = rootViewModel.getReplyMessenger.value
 
-        if(rootConnection?.mBound == true){
-            if(!key.isModifier) {
-                val message = Message.obtain(null, MSG_SEND_RAW_COMMANDS)
-                Bundle().also { bundle ->
-                    bundle.putString("msg", key.value)
-                    message.data = bundle
-                }
-                message.replyTo = replyToMessenger
-                try {
-                    rootConnection.mServiceMessenger?.send(message)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,11 +39,34 @@ class KeyboardFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val keyA = view.findViewById<Key>(R.id.keyA)
-        val keyBackspace = view.findViewById<Key>(R.id.keyBackspace)
+        keyboardViewModel.setKeyboardState(KEYBOARD_STATE_LETTERS)
 
-        keyBackspace.setOnClickListener(keyOnClickListener)
-        keyA.setOnClickListener(keyOnClickListener)
+        childFragmentManager.commit{
+            replace<KeyboardLettersFragment>(R.id.keyboardFragmentView)
+        }
+        keyboardViewModel.getKeyboardState.observe(viewLifecycleOwner, Observer { state ->
+            if(state != null) {
+                when(state){
+                    KEYBOARD_STATE_LETTERS ->
+                        childFragmentManager.commit{
+                            replace<KeyboardLettersFragment>(R.id.keyboardFragmentView)
+                        }
+                    KEYBOARD_STATE_SYMBOLS ->
+                        childFragmentManager.commit{
+                            replace<KeyboardSymbolsFragment>(R.id.keyboardFragmentView)
+                        }
+                }
+            }
+        })
+
+
     }
+
+
+    companion object {
+        const val KEYBOARD_STATE_LETTERS = 0
+        const val KEYBOARD_STATE_SYMBOLS = 1
+    }
+
 
 }

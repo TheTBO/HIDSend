@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.18225419664268586" />
+        <entry key="app/src/main/res/drawable/arrow_upward_48px.xml" value="0.1875" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_input.xml" value="0.17147922998986828" />
-        <entry key="app/src/main/res/layout/fragment_keyboard.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_keyboard.xml" value="0.42083333333333334" />
+        <entry key="app/src/main/res/layout/fragment_keyboard_letters.xml" value="0.32105263157894737" />
+        <entry key="app/src/main/res/layout/fragment_keyboard_symbols.xml" value="0.33" />
       </map>
     </option>
   </component>

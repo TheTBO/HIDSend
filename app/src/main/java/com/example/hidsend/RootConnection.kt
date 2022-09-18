@@ -7,7 +7,6 @@ import android.os.Messenger
 import android.util.Log
 
 class RootConnection : ServiceConnection {
-    private val mTAG = "HID_SEND_ROOT_CONN"
 
     var mServiceMessenger: Messenger? = null
     var mBound: Boolean = false
@@ -15,12 +14,16 @@ class RootConnection : ServiceConnection {
     override fun onServiceConnected(className: ComponentName, service: IBinder) {
         mServiceMessenger  = Messenger(service)
         mBound = true
-        Log.d(mTAG, "Service Connected")
+        Log.d(Companion.TAG, "Service Connected")
     }
 
     override fun onServiceDisconnected(p0: ComponentName) {
         mServiceMessenger = null
         mBound = false
-        Log.d(mTAG, "Service Disconnected")
+        Log.d(Companion.TAG, "Service Disconnected")
+    }
+
+    companion object {
+        const val TAG = "HID_SEND_ROOT_CONN"
     }
 }

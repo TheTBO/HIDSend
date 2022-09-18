@@ -8,16 +8,20 @@ import com.topjohnwu.superuser.ipc.RootService
 class MyRootService : RootService(), Handler.Callback {
 
     companion object {
+
         init {
             System.loadLibrary("hidsend")
         }
+        
+        const val MSG_SEND_MESSAGE = 1
+        const val MSG_SEND_RAW_COMMANDS = 3
+
     }
 
     private external fun sendMessage(msg: String): Int
 
 
     private lateinit var mMessenger: Messenger
-
 
     override fun onBind(intent: Intent): IBinder {
         val handler = Handler(Looper.getMainLooper(), this)
@@ -34,7 +38,7 @@ class MyRootService : RootService(), Handler.Callback {
                 }
 
                 if(msg.replyTo != null) {
-                    val replyMessage = Message.obtain(null, MSG_RECEIVED)
+                    val replyMessage = Message.obtain(null, MainActivity.MSG_RECEIVED)
                     Bundle().also { bundle ->
                         bundle.putString("msg", "Received: ${msg.data["msg"]}")
                         replyMessage.data = bundle
@@ -47,7 +51,7 @@ class MyRootService : RootService(), Handler.Callback {
                 for( line in msg.data["msg"].toString().lines()){
 
                     if(msg.replyTo != null) {
-                        val replyMessage = Message.obtain(null, MSG_RECEIVED)
+                        val replyMessage = Message.obtain(null, MainActivity.MSG_RECEIVED)
                         Bundle().also { bundle ->
                             bundle.putString("msg", "Received: $line")
                             replyMessage.data = bundle
@@ -77,40 +81,8 @@ class MyRootService : RootService(), Handler.Callback {
             }
            return char.toString()
         }else {
-            return when(char){
-                '`' -> "backquote"
-                '~' -> "tilde"
-                '!' -> "left-shift 1"
-                '@' -> "left-shift 2"
-                '#' -> "left-shift 3"
-                '$' -> "left-shift 4"
-                '%' -> "left-shift 5"
-                '^' -> "left-shift 6"
-                '&' -> "left-shift 7"
-                '*' -> "left-shift 8"
-                '(' -> "left-shift 9"
-                ')' -> "left-shift 0"
-                '-' -> "minus"
-                '_' -> "left-shift minus"
-                '=' -> "equal"
-                '+' -> "left-shift equal"
-                '.' -> "period"
-                '>' -> "left-shift period"
-                ',' -> "comma"
-                '<' -> "left-shift comma"
-                ';' -> "semicolon"
-                ':' -> "left-shift semicolon"
-                '\'' -> "quote"
-                '[' -> "lbracket"
-                ']' -> "rbracket"
-                '{' -> "left-shift lbracket"
-                '}' -> "left-shift rbracket"
-                '\\' -> "backslash"
-                '/' -> "slash"
-                '?' -> "left-shift slash"
-
-                else -> char.toString()
-            }
+            return if(!Characters.conversionMap.containsKey(char)) char.toString()
+            else Characters.conversionMap[char]!!
         }
     }
 

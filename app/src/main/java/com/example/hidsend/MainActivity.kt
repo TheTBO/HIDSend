@@ -13,26 +13,24 @@ import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.ipc.RootService
 
 
-const val MSG_SEND_MESSAGE = 1
-const val MSG_RECEIVED = 2
-const val MSG_SEND_RAW_COMMANDS = 3
-const val TAG = "HID_SEND_MAIN_ACTIVITY"
+
 
 class MainActivity : AppCompatActivity(), Handler.Callback {
 
     init {
-        Shell.enableVerboseLogging = BuildConfig.DEBUG
-        Shell.setDefaultBuilder(
-            Shell.Builder.create()
-                .setFlags(Shell.FLAG_REDIRECT_STDERR)
-                .setTimeout(10)
-        )
+        if(Shell.getCachedShell() == null) {
+            Shell.enableVerboseLogging = BuildConfig.DEBUG
+            Shell.setDefaultBuilder(
+                Shell.Builder.create()
+                    .setFlags(Shell.FLAG_REDIRECT_STDERR)
+                    .setTimeout(10)
+            )
+        }
     }
 
 
+    private val rootViewModel: RootViewModel by viewModels()
 
-    private val rootConnection = RootConnection()
-    private val replyMessenger = Messenger(Handler(Looper.getMainLooper(),this))
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -42,9 +40,8 @@ class MainActivity : AppCompatActivity(), Handler.Callback {
         setContentView(R.layout.activity_main)
 
 
-        val rootViewModel: RootViewModel by viewModels()
-        rootViewModel.setRootConnection(rootConnection)
-        rootViewModel.setReplyMessenger(replyMessenger)
+        if(rootViewModel.getRootConnection.value == null) rootViewModel.setRootConnection(RootConnection())
+        if(rootViewModel.getReplyMessenger.value == null) rootViewModel.setReplyMessenger(Messenger(Handler(Looper.getMainLooper(),this)))
 
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
 
@@ -77,7 +74,9 @@ class MainActivity : AppCompatActivity(), Handler.Callback {
     override fun onStart() {
         super.onStart()
 
-        if (!rootConnection.mBound) {
+        val rootConnection = rootViewModel.getRootConnection.value
+
+        if (rootConnection != null) if (!rootConnection.mBound) {
             Intent(this@MainActivity, MyRootService::class.java).also { intent ->
                 RootService.bind(intent, rootConnection)
             }
@@ -86,7 +85,11 @@ class MainActivity : AppCompatActivity(), Handler.Callback {
 
     override fun onStop() {
         super.onStop()
-        if(rootConnection.mBound) {
+
+        val rootConnection = rootViewModel.getRootConnection.value
+
+
+        if (rootConnection != null) if(rootConnection.mBound) {
             RootService.unbind(rootConnection)
         }
     }
@@ -99,6 +102,11 @@ class MainActivity : AppCompatActivity(), Handler.Callback {
             }
             else -> false
         }
+    }
+
+    companion object {
+        const val MSG_RECEIVED = 2
+        const val TAG = "HID_SEND_MAIN_ACTIVITY"
     }
 
 }
