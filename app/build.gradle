@@ -46,8 +46,8 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
@@ -61,7 +61,7 @@ dependencies {
     implementation "com.github.topjohnwu.libsu:service:${libsuVersion}"
 
 
-    def lifecycle_version = "2.6.0-alpha01"
+    def lifecycle_version = "2.6.0-alpha02"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -69,16 +69,12 @@ dependencies {
 
     def activity_version = "1.5.1"
 
-    // Java language implementation
-    implementation "androidx.activity:activity:$activity_version"
     // Kotlin
     implementation "androidx.activity:activity-ktx:$activity_version"
 
 
     def fragment_version = "1.5.2"
-
-    // Java language implementation
-    implementation "androidx.fragment:fragment:$fragment_version"
+    
     // Kotlin
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
