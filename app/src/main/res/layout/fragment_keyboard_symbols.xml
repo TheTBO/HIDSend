@@ -585,7 +585,7 @@
             app:value="left-shift" />
 
         <com.example.hidsend.Key
-            android:id="@+id/keyZ"
+            android:id="@+id/keyAstrix"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -599,7 +599,7 @@
             android:paddingTop="0dp"
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
-            android:text="@string/z"
+            android:text="@string/astrix"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -608,10 +608,10 @@
             app:iconPadding="0dp"
             app:iconTint="@color/white"
             app:isModifier="false"
-            app:value="z" />
+            app:value="left-shift 8" />
 
         <com.example.hidsend.Key
-            android:id="@+id/keyX"
+            android:id="@+id/keyDoubleQuotes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -625,7 +625,7 @@
             android:paddingTop="0dp"
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
-            android:text="@string/x"
+            android:text="@string/doubleQuotes"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -634,10 +634,10 @@
             app:iconPadding="0dp"
             app:iconTint="@color/white"
             app:isModifier="false"
-            app:value="x" />
+            app:value="left-shift quote" />
 
         <com.example.hidsend.Key
-            android:id="@+id/keyC"
+            android:id="@+id/keyQuotes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -651,7 +651,7 @@
             android:paddingTop="0dp"
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
-            android:text="@string/c"
+            android:text="@string/quote"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -660,10 +660,10 @@
             app:iconPadding="0dp"
             app:iconTint="@color/white"
             app:isModifier="false"
-            app:value="c" />
+            app:value="quote" />
 
         <com.example.hidsend.Key
-            android:id="@+id/keyV"
+            android:id="@+id/keyColon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -677,7 +677,7 @@
             android:paddingTop="0dp"
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
-            android:text="@string/v"
+            android:text="@string/colon"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -686,10 +686,10 @@
             app:iconPadding="0dp"
             app:iconTint="@color/white"
             app:isModifier="false"
-            app:value="v" />
+            app:value="left-shift semicolon" />
 
         <com.example.hidsend.Key
-            android:id="@+id/keyB"
+            android:id="@+id/keySemicolon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -703,7 +703,7 @@
             android:paddingTop="0dp"
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
-            android:text="@string/b"
+            android:text="@string/semicolon"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -712,10 +712,10 @@
             app:iconPadding="0dp"
             app:iconTint="@color/white"
             app:isModifier="false"
-            app:value="b" />
+            app:value="semicolon" />
 
         <com.example.hidsend.Key
-            android:id="@+id/keyN"
+            android:id="@+id/keyExclamation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -729,7 +729,7 @@
             android:paddingTop="0dp"
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
-            android:text="@string/n"
+            android:text="!"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -738,10 +738,10 @@
             app:iconPadding="0dp"
             app:iconTint="@color/white"
             app:isModifier="false"
-            app:value="n" />
+            app:value="left-shift 1" />
 
         <com.example.hidsend.Key
-            android:id="@+id/keyM"
+            android:id="@+id/keyQuestion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -755,7 +755,7 @@
             android:paddingTop="0dp"
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
-            android:text="@string/m"
+            android:text="@string/question"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -764,7 +764,7 @@
             app:iconPadding="0dp"
             app:iconTint="@color/white"
             app:isModifier="false"
-            app:value="m" />
+            app:value="left-shift slash" />
 
         <com.example.hidsend.Key
             android:id="@+id/keyBackspace"
@@ -814,9 +814,14 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:maxLines="1"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
             android:singleLine="true"
             android:text="@string/abc"
             android:textColor="@color/white"
+            android:textSize="14sp"
             app:cornerRadius="5dp" />
 
         <com.example.hidsend.Key
@@ -845,6 +850,30 @@
             app:value="left-ctrl" />
 
         <com.example.hidsend.Key
+            android:id="@+id/keyComma"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/key_background_normal"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="@string/comma"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="5dp"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/white"
+            app:isModifier="true"
+            app:value="comma" />
+
+        <com.example.hidsend.Key
             android:id="@+id/keySpace"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -867,6 +896,30 @@
             app:iconTint="@color/white"
             app:isModifier="false"
             app:value="space" />
+
+        <com.example.hidsend.Key
+            android:id="@+id/keyDot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/key_background_normal"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="@string/dot"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="5dp"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/white"
+            app:isModifier="true"
+            app:value="stop" />
 
         <com.example.hidsend.Key
             android:id="@+id/keyEnter"

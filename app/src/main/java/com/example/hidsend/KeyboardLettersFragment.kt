@@ -63,8 +63,6 @@ class KeyboardLettersFragment : Fragment() {
         for(rowView in group){
             val row = rowView as ViewGroup
             for(item in row){
-                Log.d(TAG, item.javaClass.toString())
-
                 if(item.javaClass == Key::class.java)
                     (item as Key).also(keys::add)
             }

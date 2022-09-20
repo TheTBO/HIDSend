@@ -63,4 +63,12 @@
     <string name="leftParenthesis">(</string>
     <string name="rightParenthesis">)</string>
     <string name="slash">/</string>
+    <string name="dot">.</string>
+    <string name="comma">,</string>
+    <string name="astrix">*</string>
+    <string name="doubleQuotes">\"</string>
+    <string name="quote">\'</string>
+    <string name="colon">:</string>
+    <string name="semicolon">;</string>
+    <string name="question">\?</string>
 </resources>

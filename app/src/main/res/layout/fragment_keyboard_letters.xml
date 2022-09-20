@@ -1047,6 +1047,10 @@
             android:backgroundTint="@color/key_background_normal"
             android:insetTop="0dp"
             android:insetBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
             android:text="@string/symbols"
             android:textColor="@color/white"
             app:cornerRadius="5dp" />
@@ -1077,6 +1081,30 @@
             app:value="left-ctrl" />
 
         <com.example.hidsend.Key
+            android:id="@+id/keyComma"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/key_background_normal"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="@string/comma"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="5dp"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/white"
+            app:isModifier="true"
+            app:value="comma" />
+
+        <com.example.hidsend.Key
             android:id="@+id/keySpace"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -1099,6 +1127,30 @@
             app:iconTint="@color/white"
             app:isModifier="false"
             app:value="space" />
+
+        <com.example.hidsend.Key
+            android:id="@+id/keyDot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/key_background_normal"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="@string/dot"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="5dp"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/white"
+            app:isModifier="true"
+            app:value="stop" />
 
         <com.example.hidsend.Key
             android:id="@+id/keyEnter"

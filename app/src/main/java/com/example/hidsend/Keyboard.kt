@@ -5,14 +5,19 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Message
 import android.os.Messenger
+import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.View.OnTouchListener
 import java.lang.Exception
 
-class Keyboard(private val context: Context, keys: MutableList<Key>, private val rootConnection: RootConnection, private val replyToMessenger: Messenger) : OnClickListener {
+class Keyboard(private val context: Context, keys: MutableList<Key>, private val rootConnection: RootConnection, private val replyToMessenger: Messenger) : OnClickListener,
+        OnTouchListener  {
         init {
                 for (key in keys){
                         key.setOnClickListener(this)
+                        key.setOnTouchListener(this)
                 }
         }
 
@@ -60,6 +65,19 @@ class Keyboard(private val context: Context, keys: MutableList<Key>, private val
                                 }
                         }
                 }
+        }
+
+        override fun onTouch(view: View?, event: MotionEvent?): Boolean {
+                Log.d(TAG, "Touch $view, $event")
+                return when(event?.action) {
+                        MotionEvent.ACTION_BUTTON_PRESS -> true
+                        MotionEvent.ACTION_BUTTON_RELEASE -> true
+                        else -> false
+                }
+        }
+
+        companion object {
+                const val TAG = "HID_SEND_KB"
         }
 
 }
