@@ -1,4 +1,4 @@
-# HID Send
+# ![HID Send](logo.svg "HID Send") HID Send
 
 is a simple tool to send a string over an android HID keyboard usb gadget.
 
